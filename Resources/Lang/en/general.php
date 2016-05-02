@@ -16,6 +16,7 @@ return [
         'type'                        => 'Type',
         'cn'                          => 'CN',
         'dn'                          => 'DN',
+        'username'                    => 'User name',
         'samaccountname'              => 'sAMAccountName',
         'group_name'                  => 'Group name',
         'description'                 => 'Description',

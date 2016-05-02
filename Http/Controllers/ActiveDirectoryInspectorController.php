@@ -176,10 +176,7 @@ class ActiveDirectoryInspectorController extends Controller
                         break;
                 }
 
-                $attCount = $adRecord['count'];
-                $iCnt = 0;
-                while ($iCnt < $attCount) {
-                    $adKey = $adRecord[$iCnt];
+                for ($iCnt=0; ($adKey=$adRecord[$iCnt])!==null; $iCnt++) {
                     $adVal = $adRecord[$adKey];
                     if (is_array($adVal)) {
                         foreach($adVal as $arrKey => $arrVal) {
@@ -195,7 +192,6 @@ class ActiveDirectoryInspectorController extends Controller
                     else {
                         $arrRecord[$adKey] = $adVal;
                     }
-                    $iCnt++;
                 }
 
             }

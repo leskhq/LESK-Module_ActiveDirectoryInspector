@@ -30,6 +30,11 @@
 
                             <div class="tab-pane active" id="tab_general">
                                 <div class="form-group">
+                                    {!! Form::label('username', trans('activedirectoryinspector::general.columns.username')) !!}
+                                    {!! Form::text('username', $adRecord['samaccountname'][0], ['class' => 'form-control', 'readonly']) !!}
+                                </div>
+
+                                <div class="form-group">
                                     {!! Form::label('first_name', trans('activedirectoryinspector::general.columns.first_name')) !!}
                                     {!! Form::text('first_name', $adRecord['givenname'][0], ['class' => 'form-control', 'readonly']) !!}
                                 </div>
