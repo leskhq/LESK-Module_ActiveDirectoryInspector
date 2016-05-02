@@ -94,6 +94,9 @@ class Utility
             case (preg_match('/CN=Dns-Zone,CN=Schema,CN=Configuration,DC=.*/', $objCat) ? true : false) :
                 $objectType = 'Zone';
                 break;
+            case (preg_match('/CN=Computer,CN=Schema,CN=Configuration,DC=.*/', $objCat) ? true : false) :
+                $objectType = 'Computer';
+                break;
             default:
                 $objectType = 'Unknown';
         }

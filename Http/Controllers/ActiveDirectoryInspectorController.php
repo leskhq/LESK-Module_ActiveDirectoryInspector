@@ -105,6 +105,10 @@ class ActiveDirectoryInspectorController extends Controller
                             $tmpResult['type-icon'] = 'sitemap';
                             $tmpResult['type-label'] = 'Zone';
                             break;
+                        case "Computer":
+                            $tmpResult['type-icon'] = 'desktop';
+                            $tmpResult['type-label'] = 'Computer';
+                            break;
                         default:
                             $tmpResult['type-icon'] = 'question';
                             $tmpResult['type-label'] = 'Unknown';
@@ -207,6 +211,9 @@ class ActiveDirectoryInspectorController extends Controller
             unset($adldap);
         }
 
+        ksort($arrRecord);
+        asort($arrMembers);
+        asort($arrMemberOf);
         session(['crumbtrail.leaf' => 'activedirectoryinspector.home']);
         return view($viewName, compact('page_title', 'page_description', 'adRecord', 'arrRecord', 'arrMembers', 'arrMemberOf'));
     }
