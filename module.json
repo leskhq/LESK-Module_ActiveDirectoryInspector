@@ -1,11 +1,26 @@
 {
-	"name": "ActiveDirectoryInspector",
-	"slug": "activedirectoryinspector",
-	"namespace": "ActiveDirectoryInspector",
-	"version": "1.0",
-	"author": "Sebastien Routier",
-	"license": "GPL-3.0",
-	"description": "This is the description for the Activedirectoryinspector module.",
-	"enabled": false,
-	"initialized": false
+    "ActiveDirectoryInspector": {
+        "name": "ActiveDirectoryInspector",
+        "slug": "active_directory_inspector",
+        "namespace": "ActiveDirectoryInspector",
+        "version": "1.0",
+        "author": "Sebastien Routier",
+        "license": "GPL-3.0",
+        "description": "This is the description for the Activedirectoryinspector module.",
+        "order": 9001,
+        "enabled": false,
+        "ActiveDirectoryInspector": {
+            "name": "ActiveDirectoryInspector",
+            "slug": "active_directory_inspector",
+            "namespace": "ActiveDirectoryInspector",
+            "version": "1.0",
+            "author": "Sebastien Routier",
+            "license": "GPL-3.0",
+            "description": "This is the description for the Activedirectoryinspector module.",
+            "order": 9001,
+            "enabled": false,
+            "initialized": true
+        },
+        "initialized": false
+    }
 }
