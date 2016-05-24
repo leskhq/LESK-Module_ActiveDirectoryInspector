@@ -77,7 +77,7 @@ class ActiveDirectoryInspectorMaintenance implements ModuleMaintenanceInterface 
                 'name'          => 'tools-container',
                 'label'         => 'Tools',
                 'position'      => 10,
-                'icon'          => 'fa fa-wrench',
+                'icon'          => 'ion ion-settings',
                 'separator'     => false,
                 'url'           => null,                // No url.
                 'enabled'       => true,
