@@ -1,14 +1,13 @@
 # ActiveDirectoryInspector module
 
-To deploy simply clone the repository from the ```Modules``` directory of the base [L51ESK](https://github.com/sroutier/laravel-5.1-enterprise-starter-kit) install, as shown below:
+To deploy simply clone the repository into the ```Modules``` directory from the base or root [L51ESK](https://github.com/sroutier/laravel-5.1-enterprise-starter-kit) install, as shown below:
 ```
-$ cd app/Modules/
-$ git clone https://<git-repo-server>/<group>/<repository>.git ActiveDirectoryInspector
+$ cd <MySuperProjectBasedOnL51ESK>
+$ git clone https://github.com/sroutier/L51ESK-Module_ActiveDirectoryInspector app/Modules/ActiveDirectoryInspector
 ```
 
 Then make sure to optimize the master module definition, from the base directory, with:
 ```
-$ cd ../..
 $ ./artisan module:optimize
 ```
 
