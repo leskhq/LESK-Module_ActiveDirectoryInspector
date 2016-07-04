@@ -5,6 +5,6 @@
   "version": "1.0",
   "author": "Sebastien Routier",
   "license": "GPL-3.0",
-  "description": "This is the description for the Activedirectoryinspector module.",
-  "order": 9001
+  "description": "A simple browser that allows you to search and display results from MS Active Directory.",
+  "order": 10
   }
