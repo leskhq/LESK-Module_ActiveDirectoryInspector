@@ -1,5 +1,4 @@
-<?php
-namespace App\Modules\ActiveDirectoryInspector\Http\Controllers;
+<?php namespace App\Modules\ActiveDirectoryInspector\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -42,8 +41,9 @@ class ActiveDirectoryInspectorController extends Controller
      * Costom constructor to get a handle on the Application instance.
      * @param Application $app
      */
-    public function __construct(Application $app)
+    public function __construct(Application $app, Audit $audit)
     {
+        parent::__construct($app, $audit, "activedirectoryinspector");
         $this->app = $app;
         $this->ldapConfig = $this->app['config']['activedirectoryinspector'];
     }
