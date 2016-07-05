@@ -38,7 +38,7 @@ class ActiveDirectoryInspectorController extends Controller
     protected $ldapConOp;
 
     /**
-     * Costom constructor to get a handle on the Application instance.
+     * Custom constructor to get a handle on the Application instance.
      * @param Application $app
      */
     public function __construct(Application $app, Audit $audit)
