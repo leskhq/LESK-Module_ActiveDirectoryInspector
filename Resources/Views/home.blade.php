@@ -32,7 +32,7 @@
                                     <th>{{ trans('activedirectoryinspector::general.columns.dn') }}</th>
                                 </tr>
                                 </thead>
-                                @if (isset($adResults))
+                                @if ($adResults)
                                     <tfoot>
                                     <tr>
                                         <th>{{ trans('activedirectoryinspector::general.columns.type') }}</th>
@@ -43,7 +43,7 @@
                                     </tfoot>
                                 @endif
                                 <tbody>
-                                @if (isset($adResults))
+                                @if ($adResults)
                                     @foreach($adResults as $adResult)
                                         <tr>
                                             <td align="center"><i class="fa fa-{{$adResult['type-icon']}}" title="{{$adResult['type-label']}}"></i></td>

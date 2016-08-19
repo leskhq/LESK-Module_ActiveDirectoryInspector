@@ -11,7 +11,14 @@ Then make sure to optimize the master module definition, from the base directory
 $ ./artisan module:optimize
 ```
 
-Once a new module is detected by the framework, a site administrator can go to the "Modules administration" page and first
- initialize the module, then enable it for all authorized users to have access.
+# Dependencies
+None. 
+
+#Prerequisites
+None.
+
+# Installing and activating
+Once a new module is detected by the framework, a site administrator can go to the "Modules administration" page 
+and first initialize the module, then enable it for all authorized users to have access.
   
   

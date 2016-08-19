@@ -22,14 +22,6 @@ class ActiveDirectoryInspectorController extends Controller
     protected $app;
 
     /**
-     * Shortcut to the config section.
-     *
-     * @var Array
-     */
-
-    protected $ldapConfig;
-
-    /**
      * The connection options for LDAP.
      *
      * @var Array
@@ -45,11 +37,12 @@ class ActiveDirectoryInspectorController extends Controller
     {
         parent::__construct($app, $audit, "activedirectoryinspector");
         $this->app = $app;
-        $this->ldapConfig = $this->app['config']['activedirectoryinspector'];
     }
 
     public function home()
     {
+        $adResults = false;
+
         Audit::log(Auth::user()->id, trans('activedirectoryinspector::general.audit-log.category'), trans('activedirectoryinspector::general.audit-log.msg-home'));
 
         $page_title = trans('activedirectoryinspector::general.page.home.title');
@@ -58,7 +51,8 @@ class ActiveDirectoryInspectorController extends Controller
         //Blank query to start.
         $query = '';
 
-        return view('activedirectoryinspector::home', compact('page_title', 'page_description', 'query'));
+        return view('activedirectoryinspector::home', compact('page_title', 'page_description', 'adResults', 'query'));
+
     }
 
     public function search(Request $request)
@@ -230,7 +224,7 @@ class ActiveDirectoryInspectorController extends Controller
 
         if (!isset($this->ldapConOp) || is_null($this->ldapConOp)) {
             // Call Utility class function to get AD/LDAP connection info.
-            $this->ldapConOp = Utility::GetLDAPConnectionOptions($this->ldapConfig);
+            $this->ldapConOp = Utility::GetLDAPConnectionOptions();
         }
 
         return $this->ldapConOp;

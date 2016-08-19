@@ -1,192 +1,87 @@
 <?php namespace App\Modules\ActiveDirectoryInspector\Utils;
 
-use Sroutier\L51ESKModules\Contracts\ModuleMaintenanceInterface;
-use App\Models\Menu;
-use App\Models\Route;
-use App\Models\Permission;
-use App\Models\Role;
 use DB;
+use Sroutier\L51ESKModules\Contracts\ModuleMaintenanceInterface;
+use Sroutier\L51ESKModules\Traits\MaintenanceTrait;
 
-class ActiveDirectoryInspectorMaintenance implements ModuleMaintenanceInterface {
+class ActiveDirectoryInspectorMaintenance implements ModuleMaintenanceInterface
+{
 
+    use MaintenanceTrait;
 
     static public function initialize()
     {
-
         DB::transaction(function () {
+//            self::migrate('active_directory_inspector');
+//            self::seed('active_directory_inspector');
 
-            //Register module routes.
-            $routeHome = Route::firstOrCreate([
-                'name' => 'activedirectoryinspector.home',
-                'method' => 'GET',
-                'path' => 'activedirectoryinspector',
-                'action_name' => 'App\Modules\ActiveDirectoryInspector\Http\Controllers\ActiveDirectoryInspectorController@home',
-                'enabled' => 1,
-            ]);
-            $routeShow = Route::firstOrCreate([
-                'name' => 'activedirectoryinspector.show',
-                'method' => 'GET',
-                'path' => 'activedirectoryinspector/show/{dn}',
-                'action_name' => 'App\Modules\ActiveDirectoryInspector\Http\Controllers\ActiveDirectoryInspectorController@show',
-                'enabled' => 1,
-            ]);
-            $routeSearch = Route::firstOrCreate([
-                'name' => 'activedirectoryinspector.search',
-                'method' => 'POST',
-                'path' => 'activedirectoryinspector/search',
-                'action_name' => 'App\Modules\ActiveDirectoryInspector\Http\Controllers\ActiveDirectoryInspectorController@search',
-                'enabled' => 1,
-            ]);
+            $permUseActiveDirectoryInspector = self::createPermission(  'use-activedirectoryinspector',
+                'Use ActiveDirectoryInspector',
+                'Allows a user to use the ActiveDirectoryInspector module.');
 
-            // Create permissions required by module
-            $permUseActiveDirectoryInspector = Permission::firstOrCreate([
-                'name' => 'use-activedirectoryinspector',
-                'display_name' => 'Use ActiveDirectoryInspector',
-                'description' => 'Allows a user to use the ActiveDirectoryInspector module.',
-                'enabled' => true,
-            ]);
 
-            // Associate module permissions to the module routes
-            $routeHome->permission()->associate($permUseActiveDirectoryInspector);
-            $routeHome->save();
-            $routeShow->permission()->associate($permUseActiveDirectoryInspector);
-            $routeShow->save();
-            $routeSearch->permission()->associate($permUseActiveDirectoryInspector);
-            $routeSearch->save();
+            $routeHome = self::createRoute( 'activedirectoryinspector.home',
+                'activedirectoryinspector',
+                'App\Modules\ActiveDirectoryInspector\Http\Controllers\ActiveDirectoryInspectorController@home',
+                $permUseActiveDirectoryInspector );
+            self::createRoute( 'activedirectoryinspector.show',
+                'activedirectoryinspector/show/{dn}',
+                'App\Modules\ActiveDirectoryInspector\Http\Controllers\ActiveDirectoryInspectorController@show',
+                $permUseActiveDirectoryInspector );
+            self::createRoute( 'activedirectoryinspector.search',
+                'activedirectoryinspector/search',
+                'App\Modules\ActiveDirectoryInspector\Http\Controllers\ActiveDirectoryInspectorController@search',
+                $permUseActiveDirectoryInspector,
+                'POST' );
 
             // Create a role for the module
-            $roleActiveDirectoryInspector = Role::firstOrCreate([
-                "name" => "activedirectoryinspector-users",
-                "display_name" => "ActiveDirectoryInspector Users",
-                "description" => "Users of the ActiveDirectoryInspector module.",
-                "enabled" => true
-            ]);
-            // Assign module permission to new role.
-            $roleActiveDirectoryInspector->perms()->sync([$permUseActiveDirectoryInspector->id]);
+            self::createRole( 'activedirectoryinspector-users',
+                'ActiveDirectoryInspector Users',
+                'Users of the ActiveDirectoryInspector module.',
+                [$permUseActiveDirectoryInspector->id] );
 
-            // Get handle on home menu as the parent.
-            $parentMenu = Menu::where('name', 'home')->first();
-            // If home menu was not found, the site admin, must have customized the menu system.
-            // Best to create our menu under root and let the admin work it out.
-            if (!$parentMenu) {
-                $parentMenu = Menu::where('name', 'root')->first();
-            }
-
-            // Create modules menu container/folder.
-            $menuToolsContainer = Menu::firstOrCreate([
-                'name'          => 'tools-container',
-                'label'         => 'Tools',
-                'position'      => 10,
-                'icon'          => 'ion ion-settings',
-                'separator'     => false,
-                'url'           => null,                // No url.
-                'enabled'       => true,
-                'parent_id'     => $parentMenu->id,     // Parent is home or root.
-                'route_id'      => null,                // No route
-                'permission_id' => null,                // Get permission from sub-items. If the user has permission to see/use
-                                                        // any sub-items, the menu will be rendered, otherwise it will
-                                                        // not.
-            ]);
-            // Create home sub-menu
-            $menuActiveDirectoryInspectorHome = Menu::firstOrCreate([
-                'name'          => 'activedirectoryinspector.home',
-                'label'         => 'AD Inspector',
-                'position'      => 0,
-                'icon'          => 'fa fa-book',
-                'separator'     => false,
-                'url'           => null,                   // Get URL from route.
-                'enabled'       => false,
-                'parent_id'     => $menuToolsContainer->id,
-                'route_id'      => $routeHome->id,
-                'permission_id' => null,                   // Get permission from route.
-            ]);
-
+            // Create menu system for the module
+            $menuToolsContainer = self::createMenu( 'tools-container', 'Tools', 10, 'ion ion-settings', 'home', true );
+            self::createMenu( 'activedirectoryinspector.home', 'AD Inspector', 0, 'fa fa-book', $menuToolsContainer, false, $routeHome );
         }); // End of DB::transaction(....)
-
     }
 
     static public function unInitialize()
     {
-
         DB::transaction(function () {
 
-            // Locate module sub menu entries and delete them.
-            $menuActiveDirectoryInspectorHome = Menu::where('name', 'activedirectoryinspector.home')->first();
-            if ($menuActiveDirectoryInspectorHome) {
-                Menu::destroy($menuActiveDirectoryInspectorHome->id);
-            }
-            // Locate demo module parent folder and delete it if if does not contain
-            // any other sub-menu entries.
-            $menuToolsContainer = Menu::where('name', 'tools-container')->first();
-            if ( ($menuToolsContainer) && (!$menuToolsContainer->children->count()) ) {
-                Menu::destroy($menuToolsContainer->id);
-            }
+            self::destroyMenu('activedirectoryinspector.home');
+            self::destroyMenu('tools-container');
 
-            // Locate module role, detach from perms and users then delete.
-            $roleActiveDirectoryInspector = Role::where('name', 'activedirectoryinspector-users')->first();
-            if ($roleActiveDirectoryInspector) {
-                $roleActiveDirectoryInspector->perms()->detach();
-                $roleActiveDirectoryInspector->users()->detach();
-                Role::destroy($roleActiveDirectoryInspector->id);
-            }
+            self::destroyRole('activedirectoryinspector-users');
 
-            // Locate module routes, dissociate from perms and delete
-            $routeShow = Route::where('name', 'activedirectoryinspector.show')->first();
-            if ($routeShow) {
-                $routeShow->permission()->dissociate();
-                Route::destroy($routeShow->id);
-            }
-            $routeSearch = Route::where('name', 'activedirectoryinspector.search')->first();
-            if ($routeSearch) {
-                $routeSearch->permission()->dissociate();
-                Route::destroy($routeSearch->id);
-            }
-            $routeHome = Route::where('name', 'activedirectoryinspector.home')->first();
-            if ($routeHome) {
-                $routeHome->permission()->dissociate();
-                Route::destroy($routeHome->id);
-            }
+            self::destroyRoute('activedirectoryinspector.show');
+            self::destroyRoute('activedirectoryinspector.search');
+            self::destroyRoute('activedirectoryinspector.home');
 
-            // Locate module permission and delete
-            $permUseActiveDirectoryInspector = Permission::where('name', 'use-activedirectoryinspector')->first();
-            if ($permUseActiveDirectoryInspector) {
-                Permission::destroy($permUseActiveDirectoryInspector->id);
-            }
+            self::destroyPermission('use-activedirectoryinspector');
 
+//            self::rollbackMigration('active_directory_inspector');
         }); // End of DB::transaction(....)
-
     }
 
     static public function enable()
     {
-
         DB::transaction(function () {
-
-            // Locate module sub menu entries and enable them.
-            $menuActiveDirectoryInspectorHome = Menu::where('name', 'activedirectoryinspector.home')->first();
-            if ($menuActiveDirectoryInspectorHome) {
-                $menuActiveDirectoryInspectorHome->enabled = true;
-                $menuActiveDirectoryInspectorHome->save();
-            }
-
-        }); // End of DB::transaction(....)
-
+            self::enableMenu('activedirectoryinspector.home');
+        });
     }
+
+
 
     static public function disable()
     {
-
         DB::transaction(function () {
-
-            // Locate module sub menu entries and disable them.
-            $menuActiveDirectoryInspectorHome = Menu::where('name', 'activedirectoryinspector.home')->first();
-            if ($menuActiveDirectoryInspectorHome) {
-                $menuActiveDirectoryInspectorHome->enabled = false;
-                $menuActiveDirectoryInspectorHome->save();
-            }
-
-        }); // End of DB::transaction(....)
-
+            self::disableMenu('activedirectoryinspector.home');
+        });
     }
+
+
+
 
 }
