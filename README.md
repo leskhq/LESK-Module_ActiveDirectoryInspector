@@ -14,7 +14,7 @@ $ ./artisan module:optimize
 # Dependencies
 None. 
 
-#Prerequisites
+# Prerequisites
 None.
 
 # Installing and activating
