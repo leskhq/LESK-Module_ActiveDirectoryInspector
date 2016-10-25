@@ -1,9 +1,9 @@
 # ActiveDirectoryInspector module
 
-To deploy simply clone the repository into the ```Modules``` directory from the base or root [L51ESK](https://github.com/sroutier/laravel-5.1-enterprise-starter-kit) install, as shown below:
+To deploy simply clone the repository into the ```Modules``` directory from the base or root [LESK](https://github.com/sroutier/laravel-enterprise-starter-kit) install, as shown below:
 ```
-$ cd <MySuperProjectBasedOnL51ESK>
-$ git clone https://github.com/sroutier/L51ESK-Module_ActiveDirectoryInspector app/Modules/ActiveDirectoryInspector
+$ cd <MySuperProjectBasedOnLESK>
+$ git clone https://github.com/sroutier/LESK-Module_ActiveDirectoryInspector app/Modules/ActiveDirectoryInspector
 ```
 
 Then make sure to optimize the master module definition, from the base directory, with:
