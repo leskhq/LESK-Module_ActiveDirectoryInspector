@@ -1,8 +1,8 @@
 <?php namespace App\Modules\ActiveDirectoryInspector\Utils;
 
 use DB;
-use Sroutier\L51ESKModules\Contracts\ModuleMaintenanceInterface;
-use Sroutier\L51ESKModules\Traits\MaintenanceTrait;
+use Sroutier\LESKModules\Contracts\ModuleMaintenanceInterface;
+use Sroutier\LESKModules\Traits\MaintenanceTrait;
 
 class ActiveDirectoryInspectorMaintenance implements ModuleMaintenanceInterface
 {

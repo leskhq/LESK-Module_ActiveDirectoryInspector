@@ -1,7 +1,7 @@
 <?php
 namespace App\Modules\ActiveDirectoryInspector\Providers;
 
-use Sroutier\L51ESKModules\Providers\RouteServiceProvider as ServiceProvider;
+use Sroutier\LESKModules\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider

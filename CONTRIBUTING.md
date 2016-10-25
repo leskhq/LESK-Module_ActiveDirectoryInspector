@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-Contributions are accepted via Pull Requests on [Github](https://github.com/sroutier/L51ESK-Module_ActiveDirectoryInspector).
+Contributions are accepted via Pull Requests on [Github](https://github.com/sroutier/LESK-Module_ActiveDirectoryInspector).
 
 
 ## Pull Requests
