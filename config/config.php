@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'account_suffix' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.ACCOUNT_SUFFIX', env('LDAP.ACCOUNT_SUFFIX', "@company.com")),
+    'account_suffix' => env('modules.active_directory_inspector.account_suffix', env('ldap.account_suffix', "@company.com")),
 
     /*
     |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'base_dn' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.BASE_DN', env('LDAP.BASE_DN', "DC=department,DC=company,DC=com")),
+    'base_dn' => env('modules.active_directory_inspector.base_dn', env('ldap.base_dn', "DC=department,DC=company,DC=com")),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'server' => [ env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.SERVER', env('LDAP.SERVER', "ldapsrv01.company.com")) ],
+    'server' => [ env('modules.active_directory_inspector.server', env('ldap.server', "ldapsrv01.company.com")) ],
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'port' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.PORT', env('LDAP.PORT', 389)),
+    'port' => env('modules.active_directory_inspector.port', env('ldap.port', 389)),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
     |
     */
 
-    'user_name' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.USER_NAME', env('LDAP.USER_NAME', "ldap_reader")),
+    'user_name' => env('modules.active_directory_inspector.user_name', env('ldap.user_name', "ldap_reader")),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'password' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.PASSWORD', env('LDAP.PASSWORD', "PaSsWoRd")),
+    'password' => env('modules.active_directory_inspector.password', env('ldap.password', "PaSsWoRd")),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'return_real_primary_group' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.RETURN_REAL_PRIMARY_GROUP', env('LDAP.RETURN_REAL_PRIMARY_GROUP', true)),
+    'return_real_primary_group' => env('modules.active_directory_inspector.return_real_primary_group', env('ldap.return_real_primary_group', true)),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'secured' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.SECURED', env('LDAP.SECURED', false)),
+    'secured' => env('modules.active_directory_inspector.secured', env('ldap.secured', false)),
 
     /*
     |--------------------------------------------------------------------------
@@ -105,7 +105,7 @@ return [
     |
     */
 
-    'secured_port' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.SECURED_PORT', env('LDAP.SECURED_PORT', 636)),
+    'secured_port' => env('modules.active_directory_inspector.secured_port', env('ldap.secured_port', 636)),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
     |
     */
 
-    'recursive_groups' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.RECURSIVE_GROUPS', env('LDAP.RECURSIVE_GROUPS', false)),
+    'recursive_groups' => env('modules.active_directory_inspector.recursive_groups', env('ldap.recursive_groups', false)),
 
     /*
     |--------------------------------------------------------------------------
@@ -129,7 +129,7 @@ return [
     |
     */
 
-    'username_field' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.USERNAME_FIELD', env('LDAP.USERNAME_FIELD', "samaccountname")),
+    'username_field' => env('modules.active_directory_inspector.username_field', env('ldap.username_field', "samaccountname")),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,7 +140,7 @@ return [
     |
     */
 
-    'email_field' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.EMAIL_FIELD', env('LDAP.EMAIL_FIELD', "userprincipalname")),
+    'email_field' => env('modules.active_directory_inspector.email_field', env('ldap.email_field', "userprincipalname")),
 
     /*
     |--------------------------------------------------------------------------
@@ -151,7 +151,7 @@ return [
     |
     */
 
-    'first_name_field' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.FIRST_NAME_FIELD', env('LDAP.FIRST_NAME_FIELD', "givenname")),
+    'first_name_field' => env('modules.active_directory_inspector.first_name_field', env('ldap.first_name_field', "givenname")),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,7 @@ return [
     |
     */
 
-    'last_name_field' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.LAST_NAME_FIELD', env('LDAP.LAST_NAME_FIELD', "sn")),
+    'last_name_field' => env('modules.active_directory_inspector.last_name_field', env('ldap.last_name_field', "sn")),
 
 
 //    /*
@@ -180,7 +180,7 @@ return [
 //    |
 //    */
 //
-//    'user_filter' => env('MODULES.ACTIVE_DIRECTORY_INSPECTOR.USER_FILTER', env('LDAP_USER_FILTER', "(&(objectcategory=person)(samaccountname=%username))")),
+//    'user_filter' => env('modules.active_directory_inspector.user_filter', env('ldap_user_filter', "(&(objectcategory=person)(samaccountname=%username))")),
 
 
 ];
