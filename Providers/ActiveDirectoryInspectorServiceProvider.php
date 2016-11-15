@@ -45,12 +45,12 @@ class ActiveDirectoryInspectorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('activedirectoryinspector.php'),
+            __DIR__.'/../config/config.php' => config_path('active_directory_inspector.php'),
         ], 'config');
 
         // use the vendor configuration file as fallback
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'activedirectoryinspector'
+            __DIR__.'/../config/config.php', 'active_directory_inspector'
         );
     }
 

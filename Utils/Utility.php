@@ -37,34 +37,34 @@ class Utility
 
         // Build basic LDAP connection configuration.
         $ldapConOp = [
-            "account_suffix"     => Setting::get('activedirectoryinspector.account_suffix'),
-            "base_dn"            => Setting::get('activedirectoryinspector.base_dn'),
-            "domain_controllers" => Setting::get('activedirectoryinspector.server'),
-            "admin_username"     => Setting::get('activedirectoryinspector.user_name'),
-            "admin_password"     => Setting::get('activedirectoryinspector.password'),
-            "real_primarygroup"  => Setting::get('activedirectoryinspector.return_real_primary_group'),
-            "recursive_groups"   => Setting::get('activedirectoryinspector.recursive_groups'),
+            "account_suffix"     => Setting::get('active_directory_inspector.account_suffix'),
+            "base_dn"            => Setting::get('active_directory_inspector.base_dn'),
+            "domain_controllers" => Setting::get('active_directory_inspector.server'),
+            "admin_username"     => Setting::get('active_directory_inspector.user_name'),
+            "admin_password"     => Setting::get('active_directory_inspector.password'),
+            "real_primarygroup"  => Setting::get('active_directory_inspector.return_real_primary_group'),
+            "recursive_groups"   => Setting::get('active_directory_inspector.recursive_groups'),
             "sso"                => false, // $ldapConfig['sso'], // NOT SUPPORTED HARD CODED TO FALSE.
             "follow_referrals"   => false, // $ldapConfig['follow_referrals'], // NOT SUPPORTED HARD CODED TO FALSE.
         ];
         // Create the communication option part, add the encryption and port info.
-        if ('tls' === Setting::get('activedirectoryinspector.secured')) {
+        if ('tls' === Setting::get('active_directory_inspector.secured')) {
             $comOpt = [
                 "use_ssl" => false,
                 "use_tls" => true,
-                "ad_port" => Setting::get('activedirectoryinspector.secured_port'), // TODO: Should this be secured_port or port?!?!
+                "ad_port" => Setting::get('active_directory_inspector.secured_port'), // TODO: Should this be secured_port or port?!?!
             ];
-        } else if ('ssl' === Setting::get('activedirectoryinspector.secured')) {
+        } else if ('ssl' === Setting::get('active_directory_inspector.secured')) {
             $comOpt = [
                 "use_ssl" => true,
                 "use_tls" => false,
-                "ad_port" => Setting::get('activedirectoryinspector.secured_port'),
+                "ad_port" => Setting::get('active_directory_inspector.secured_port'),
             ];
         } else {
             $comOpt = [
                 "use_ssl" => false,
                 "use_tls" => false,
-                "ad_port" => Setting::get('activedirectoryinspector.port'),
+                "ad_port" => Setting::get('active_directory_inspector.port'),
             ];
         }
         // Merge all options together.
