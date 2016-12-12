@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'account_suffix' => env('active_directory_inspector.account_suffix', env('ldap.account_suffix', "@company.com_from_module")),
+    'account_suffix' => Setting::get('active_directory_inspector.account_suffix', Setting::get('ldap.account_suffix', "@company.com")),
 
     /*
     |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'base_dn' => env('active_directory_inspector.base_dn', env('ldap.base_dn', "DC=department,DC=company,DC=com")),
+    'base_dn' => Setting::get('active_directory_inspector.base_dn', Setting::get('ldap.base_dn', "DC=department,DC=company,DC=com")),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'server' => [ env('active_directory_inspector.server', env('ldap.server', "ldapsrv01.company.com")) ],
+    'server' => [ Setting::get('active_directory_inspector.server', Setting::get('ldap.server', "ldapsrv01.company.com")) ],
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'port' => env('active_directory_inspector.port', env('ldap.port', 389)),
+    'port' => Setting::get('active_directory_inspector.port', Setting::get('ldap.port', 389)),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
     |
     */
 
-    'user_name' => env('active_directory_inspector.user_name', env('ldap.user_name', "ldap_reader")),
+    'user_name' => Setting::get('active_directory_inspector.user_name', Setting::get('ldap.user_name', "ldap_reader")),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'password' => env('active_directory_inspector.password', env('ldap.password', "PaSsWoRd")),
+    'password' => Setting::get('active_directory_inspector.password', Setting::get('ldap.password', "PaSsWoRd")),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'return_real_primary_group' => env('active_directory_inspector.return_real_primary_group', env('ldap.return_real_primary_group', true)),
+    'return_real_primary_group' => Setting::get('active_directory_inspector.return_real_primary_group', Setting::get('ldap.return_real_primary_group', true)),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'secured' => env('active_directory_inspector.secured', env('ldap.secured', false)),
+    'secured' => Setting::get('active_directory_inspector.secured', Setting::get('ldap.secured', false)),
 
     /*
     |--------------------------------------------------------------------------
@@ -105,7 +105,7 @@ return [
     |
     */
 
-    'secured_port' => env('active_directory_inspector.secured_port', env('ldap.secured_port', 636)),
+    'secured_port' => Setting::get('active_directory_inspector.secured_port', Setting::get('ldap.secured_port', 636)),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
     |
     */
 
-    'recursive_groups' => env('active_directory_inspector.recursive_groups', env('ldap.recursive_groups', false)),
+    'recursive_groups' => Setting::get('active_directory_inspector.recursive_groups', Setting::get('ldap.recursive_groups', false)),
 
     /*
     |--------------------------------------------------------------------------
@@ -129,7 +129,7 @@ return [
     |
     */
 
-    'username_field' => env('active_directory_inspector.username_field', env('ldap.username_field', "samaccountname")),
+    'username_field' => Setting::get('active_directory_inspector.username_field', Setting::get('ldap.username_field', "samaccountname")),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,7 +140,7 @@ return [
     |
     */
 
-    'email_field' => env('active_directory_inspector.email_field', env('ldap.email_field', "userprincipalname")),
+    'email_field' => Setting::get('active_directory_inspector.email_field', Setting::get('ldap.email_field', "userprincipalname")),
 
     /*
     |--------------------------------------------------------------------------
@@ -151,7 +151,7 @@ return [
     |
     */
 
-    'first_name_field' => env('active_directory_inspector.first_name_field', env('ldap.first_name_field', "givenname")),
+    'first_name_field' => Setting::get('active_directory_inspector.first_name_field', Setting::get('ldap.first_name_field', "givenname")),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,7 @@ return [
     |
     */
 
-    'last_name_field' => env('active_directory_inspector.last_name_field', env('ldap.last_name_field', "sn")),
+    'last_name_field' => Setting::get('active_directory_inspector.last_name_field', Setting::get('ldap.last_name_field', "sn")),
 
 
 //    /*
@@ -180,7 +180,7 @@ return [
 //    |
 //    */
 //
-//    'user_filter' => env('active_directory_inspector.user_filter', env('ldap_user_filter', "(&(objectcategory=person)(samaccountname=%username))")),
+//    'user_filter' => Setting::get('active_directory_inspector.user_filter', Setting::get('ldap_user_filter', "(&(objectcategory=person)(samaccountname=%username))")),
 
 
 ];
