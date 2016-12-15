@@ -44,8 +44,8 @@ class Utility
             "admin_password"     => Setting::get('active_directory_inspector.password'),
             "real_primarygroup"  => Setting::get('active_directory_inspector.return_real_primary_group'),
             "recursive_groups"   => Setting::get('active_directory_inspector.recursive_groups'),
-            "sso"                => false, // $ldapConfig['sso'], // NOT SUPPORTED HARD CODED TO FALSE.
-            "follow_referrals"   => false, // $ldapConfig['follow_referrals'], // NOT SUPPORTED HARD CODED TO FALSE.
+            "sso"                => false, // Setting::get('active_directory_inspector.sso'), // NOT SUPPORTED HARD CODED TO FALSE.
+            "follow_referrals"   => false, // Setting::get('active_directory_inspector.follow_referrals'), // NOT SUPPORTED HARD CODED TO FALSE.
         ];
         // Create the communication option part, add the encryption and port info.
         if ('tls' === Setting::get('active_directory_inspector.secured')) {
