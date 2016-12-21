@@ -4,7 +4,9 @@ return [
 
     'audit-log'           => [
         'category'              => 'ActiveDirectoryInspector',
-        'msg-method-name'       => 'Accessed method-name ActiveDirectoryInspector: :var.',
+        'msg-home'              => 'Accessed ActiveDirectoryInspector.',
+        'msg-search'            => 'Searched for: :query.',
+        'msg-show'              => 'Displayed: :dn.',
     ],
 
     'status'           => [
