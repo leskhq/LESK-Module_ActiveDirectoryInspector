@@ -15,13 +15,6 @@ class ActiveDirectoryInspectorController extends Controller
 {
 
     /**
-     * The application instance.
-     *
-     * @var \Illuminate\Contracts\Foundation\Application
-     */
-    protected $app;
-
-    /**
      * The connection options for LDAP.
      *
      * @var Array
@@ -36,8 +29,10 @@ class ActiveDirectoryInspectorController extends Controller
     public function __construct(Application $app, Audit $audit)
     {
         parent::__construct($app, $audit, "activedirectoryinspector");
-        $this->app = $app;
+        // Set default crumbtrail for controller.
+        session(['crumbtrail.leaf' => 'activedirectoryinspector.home']);
     }
+
 
     public function home()
     {
@@ -125,7 +120,6 @@ class ActiveDirectoryInspectorController extends Controller
             unset($adldap);
         }
 
-        session(['crumbtrail.leaf' => 'activedirectoryinspector.home']);
         return view('activedirectoryinspector::home', compact('page_title', 'page_description', 'adResults', 'query'));
 
     }
@@ -208,7 +202,6 @@ class ActiveDirectoryInspectorController extends Controller
         ksort($arrRecord);
         asort($arrMembers);
         asort($arrMemberOf);
-        session(['crumbtrail.leaf' => 'activedirectoryinspector.home']);
         return view($viewName, compact('page_title', 'page_description', 'adRecord', 'arrRecord', 'arrMembers', 'arrMemberOf'));
     }
 
